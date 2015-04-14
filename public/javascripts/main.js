@@ -48,12 +48,24 @@ String.prototype.tokens = function() {
     ONELINECOMMENT: /\/\/.*/g,
     MULTIPLELINECOMMENT: /\/[*](.|\n)*?[*]\//g,
     COMPARISONOPERATOR: /[<>=!]=|[<>]/g,
-    ONECHAROPERATORS: /([-+*\/=()&|;:,{}[\]])/g
+    ADDOP: /[+-]/g,
+    MULTOP: /[*\/]/g,
+    ONECHAROPERATORS: /([=()&|;:,{}[\]])/g
   };
   RESERVED_WORD = {
     p: "P",
     "if": "IF",
-    then: "THEN"
+    then: "THEN",
+    begin: "BEGIN",
+    end: "END",
+    "var": "VAR",
+    "const": "CONST",
+    procedure: "PROCEDURE",
+    call: "CALL",
+    procedure: "PROCEDURE",
+    "while": "WHILE",
+    "do": "DO",
+    odd: "ODD"
   };
   make = function(type, value) {
     return {
@@ -98,6 +110,10 @@ String.prototype.tokens = function() {
       result.push(make("STRING", getTok().replace(/^["']|["']$/g, "")));
     } else if (m = tokens.COMPARISONOPERATOR.bexec(this)) {
       result.push(make("COMPARISON", getTok()));
+    } else if (m = tokens.ADDOP.bexec(this)) {
+      result.push(make("ADDOP", getTok()));
+    } else if (m = tokens.MULTOP.bexec(this)) {
+      result.push(make("MULTOP", getTok()));
     } else if (m = tokens.ONECHAROPERATORS.bexec(this)) {
       result.push(make(m[0], getTok()));
     } else {
@@ -108,7 +124,7 @@ String.prototype.tokens = function() {
 };
 
 parse = function(input) {
-  var condition, expression, factor, lookahead, match, statement, statements, term, tokens, tree;
+  var block, condition, expression, factor, lookahead, match, program, statement, statements, term, tokens, tree;
   tokens = input.tokens();
   lookahead = tokens.shift();
   match = function(t) {
@@ -120,6 +136,105 @@ parse = function(input) {
     } else {
       throw ("Syntax Error. Expected " + t + " found '") + lookahead.value + "' near '" + input.substr(lookahead.from) + "'";
     }
+  };
+  program = function() {
+    var result;
+    result = block();
+    if (lookahead && lookahead.type === ".") {
+      match(".");
+    } else {
+      throw "Syntax Error. Expected '.' Remember to end your input with a .";
+    }
+    return result;
+  };
+  block = function() {
+    var arrayres, constante, proced, variable;
+    arrayres = [];
+    if (lookahead && lookahead.type === "CONST") {
+      match("CONST");
+      constante = function() {
+        var left, result, right;
+        result = null;
+        if (lookahead && lookahead.type === "ID") {
+          left = {
+            type: "Const ID",
+            value: lookahead.value
+          };
+          match("ID");
+          match("=");
+          if (lookahead && lookahead.type === "NUM") {
+            right = {
+              type: "NUM",
+              value: lookahead.value
+            };
+            match("NUM");
+          } else {
+            throw "Syntax Error. Expected NUM but found " + (lookahead ? lookahead.value : "end of input") + (" near '" + (input.substr(lookahead.from)) + "'");
+          }
+        } else {
+          throw "Syntax Error. Expected ID but found " + (lookahead ? lookahead.value : "end of input") + (" near '" + (input.substr(lookahead.from)) + "'");
+        }
+        result = {
+          type: "=",
+          left: left,
+          right: right
+        };
+        return result;
+      };
+      arrayres.push(constante());
+      while (lookahead && lookahead.type === ",") {
+        match(",");
+        arrayres.push(constante());
+      }
+      match(";");
+    }
+    if (lookahead && lookahead.type === "VAR") {
+      match("VAR");
+      variable = function() {
+        var result;
+        result = null;
+        if (lookahead && lookahead.type === "ID") {
+          result = {
+            type: "Var ID",
+            value: lookahead.value
+          };
+          match("ID");
+        } else {
+          throw "Syntax Error. Expected ID but found " + (lookahead ? lookahead.value : "end of input") + (" near '" + (input.substr(lookahead.from)) + "'");
+        }
+        return result;
+      };
+      arrayres.push(variable());
+      while (lookahead && lookahead.type === ",") {
+        match(",");
+        arrayres.push(variable());
+      }
+      match(";");
+    }
+    proced = function() {
+      var result, value;
+      result = null;
+      match("PROCEDURE");
+      if (lookahead && lookahead.type === "ID") {
+        value = lookahead.value;
+        match("ID");
+        match(";");
+        result = {
+          type: "Procedure",
+          value: value,
+          left: block()
+        };
+        match(";");
+      } else {
+        throw "Syntax Error. Expected ID but found " + (lookahead ? lookahead.value : "end of input") + (" near '" + (input.substr(lookahead.from)) + "'");
+      }
+      return result;
+    };
+    while (lookahead && lookahead.type === "PROCEDURE") {
+      arrayres.push(proced());
+    }
+    arrayres.push(statement());
+    return arrayres;
   };
   statements = function() {
     var result;
@@ -167,6 +282,31 @@ parse = function(input) {
         left: left,
         right: right
       };
+    } else if (lookahead && lookahead.type === "BEGIN") {
+      match("BEGIN");
+      result = [statement()];
+      while (lookahead && lookahead.type === ";") {
+        match(";");
+        resut.push(statement());
+      }
+      match("END");
+    } else if (lookahead && lookahead.type === "CALL") {
+      match("CALL");
+      result = {
+        type: "CALL",
+        value: lookahead.value
+      };
+      match("ID");
+    } else if (lookahead && lookahead.type === "WHILE") {
+      match("WHILE");
+      left = condition();
+      match("DO");
+      right = statement();
+      result = {
+        type: "WHILE",
+        left: left,
+        right: right
+      };
     } else {
       throw "Syntax Error. Expected identifier but found " + (lookahead ? lookahead.value : "end of input") + (" near '" + (input.substr(lookahead.from)) + "'");
     }
@@ -174,25 +314,35 @@ parse = function(input) {
   };
   condition = function() {
     var left, result, right, type;
-    left = expression();
-    type = lookahead.value;
-    match("COMPARISON");
-    right = expression();
-    result = {
-      type: type,
-      left: left,
-      right: right
-    };
+    if (lookahead && lookahead.type === "ODD") {
+      match("ODD");
+      right = expression();
+      result = {
+        type: "ODD",
+        value: right
+      };
+    } else {
+      left = expression();
+      type = lookahead.value;
+      match("COMPARISON");
+      right = expression();
+      result = {
+        type: type,
+        left: left,
+        right: right
+      };
+    }
     return result;
   };
   expression = function() {
-    var result, right;
+    var result, right, type;
     result = term();
-    if (lookahead && lookahead.type === "+") {
-      match("+");
-      right = expression();
+    while (lookahead && lookahead.type === "ADDOP") {
+      type = lookahead.value;
+      match("ADDOP");
+      right = term();
       result = {
-        type: "+",
+        type: type,
         left: result,
         right: right
       };
@@ -200,13 +350,14 @@ parse = function(input) {
     return result;
   };
   term = function() {
-    var result, right;
+    var result, right, type;
     result = factor();
-    if (lookahead && lookahead.type === "*") {
-      match("*");
-      right = term();
+    if (lookahead && lookahead.type === "MULTOP") {
+      type = lookahead.value;
+      match("MULTOP");
+      right = factor();
       result = {
-        type: "*",
+        type: type,
         left: result,
         right: right
       };
@@ -243,3 +394,6 @@ parse = function(input) {
   }
   return tree;
 };
+
+window.parse = parse;
+
