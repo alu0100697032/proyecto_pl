@@ -15,9 +15,9 @@
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
-    "js2coffee": "^2.0.3"
     "chai": "^2.2.0",
     "expect": "^1.6.0",
+    "js2coffee": "^2.0.3",
     "mocha": "^2.2.4"
   }
 }
