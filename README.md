@@ -29,7 +29,6 @@ Enlaces:
 
 
 * [Heroku](https://adpr-david-victor.herokuapp.com/)
-* [Repositorio GitHub](https://github.com/alu0100697032/adpr_express_generator)
 * [Test]()
 
 Recursos utilizados:
