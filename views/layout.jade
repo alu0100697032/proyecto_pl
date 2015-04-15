@@ -4,8 +4,25 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(type="text/javascript" src="javascripts/main.js")
+    script(type="text/javascript" src="javascripts/jquery.js")
+    script(type="text/javascript" src="javascripts/events.js")
     script(type="text/x-mathjax-config")
       |  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}}); 
     script(type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
   body
+    #navbar
+    ul
+        li 
+            a(href='https://github.com/alu0100697032/adpr_express_generator', target='_blank') Github
+        block navpiece
+        li 
+            a(href='/gram') Grammar
+        li 
+            a(href='http://jade-lang.com/', target='_blank') Jade
+        li 
+            a(href='http://sass-lang.com/', target='_blank') Sass
+        li 
+            a(href='http://coffeescript.org/', target='_blank') Coffee
+        li 
+            a(href='https://www.mathjax.org/', target='_blank') MathJax
     block content

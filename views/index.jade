@@ -1,23 +1,15 @@
 extends layout
 
+block navpiece
+    li 
+        a(href='/test') Test
 block content
-  #navbar
-    ul
-        li 
-            a(href='https://github.com/alu0100697032/adpr_express_generator', target='_blank') Github
-        li 
-            a(href='/test', target='_blank') Test
-        li 
-            a(href='/gram', target='_blank') Grammar
-        li 
-            a(href='http://jade-lang.com/', target='_blank') Jade
-        li 
-            a(href='http://sass-lang.com/', target='_blank') Sass
-        li 
-            a(href='http://coffeescript.org/', target='_blank') Coffee
-        li 
-            a(href='https://www.mathjax.org/', target='_blank') MathJax
   #analyzer
       textarea#original
       input#PARSE(value="parse" type="button")
+      #staticfiles
+        input#ejemplo1(value="Ejemplo 1" type="button")
+        input#ejemplo2(value="Ejemplo 2" type="button")
+        input#ejemplo3(value="Ejemplo 3" type="button")
+        input#error(value="Ejemplo error" type="button")
       pre#OUTPUT
