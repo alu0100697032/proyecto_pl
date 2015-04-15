@@ -1,13 +1,12 @@
 chai     = require 'chai'
 expect   = chai.expect
-routes = require "../routes/index"
+routes = require "../routes/test"
 
-describe "routes", ->
-  req = {}
-  res = {}
-  describe "index", ->
-    it "should display index with posts", ->
-      res.render = (view, vars) ->
-          expect(view).equal "index"
-          expect(vars.title).equal "ADPR"
-      routes.index(req, res)
+describe "Testing Code", ->
+  it "Asignacion", ->
+    #expect(view).equal "test"
+    #expect(vars.title).equal "test"
+    expect(innerHTML(original).value).equal "a=2+2"
+    #OUTPUT.value.match(/ID/)
+    #OUTPUT.value.match(/NUM/)
+    
