@@ -34,6 +34,21 @@ suite('ADPR', function() {
             main();
             assert.deepEqual(OUTPUT.innerHTML,'{\n  "type": "=",\n  "left": {\n    "type": "ID",\n    "value": "a"\n  },\n  "right": {\n    "type": "/",\n    "left": {\n      "type": "/",\n      "left": {\n        "type": "NUM",\n        "value": 4\n      },\n      "right": {\n        "type": "NUM",\n        "value": 2\n      }\n    },\n    "right": {\n      "type": "NUM",\n      "value": 3\n    }\n  }\n}');
         });
+        test('Test and error', function() {
+            original.value="a = 3 + (4;";
+            main();
+            assert.deepEqual(OUTPUT.innerHTML,'<div class="error">Syntax Error. Expected ) found \';\' near \';\'</div>');
+        });
+        test('Test and undefined', function() {
+            original.value="    ";
+            main();
+            assert.deepEqual(OUTPUT.innerHTML,'<div class="error">TypeError: Cannot read property \'from\' of undefined</div>');
+        });
+        test('Test a string', function() {
+            original.value="hola";
+            main();
+            assert.deepEqual(OUTPUT.innerHTML,'<div class="error">TypeError: Cannot read property \'type\' of null</div>');
+        });
         test('Recognize ID in a sentence', function() {
             original.value="a=2+2";
             main();
