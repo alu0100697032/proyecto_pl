@@ -17,11 +17,14 @@
       * Procfile
       * gitignore
   * Victor 
-      * coffe 
-      * server
+      * Scripts
+      * Server
       * Vistas
       * Deployment Heroku
 
 ## Componestes del grupo
    * [David Rodríguez González de Chaves](http://alu0100837353.github.io/)
    * [Víctor Hernández Pérez](http://alu0100697032.github.io/)
+
+## Despliegue 
+ [Heroku](https://adpr-david-victor.herokuapp.com/)
