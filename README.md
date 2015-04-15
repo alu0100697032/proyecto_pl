@@ -1,30 +1,44 @@
-#Analizador descendente predictivo recursivo 
+#Práctica: Analizador Descendiente Predictivo Recursivo
 
-## Tareas
+Contexto:
+=========
 
-   * Extienda y modifique el analizador para que acepte el lenguaje descrito por la gramática EBNF del lenguaje PL/0 que se describe en la entrada de la Wikipedia Recursive descent parser. Procure que el arbol generado refleje la asociatividad correcta para las diferencias y las divisiones. No es necesario que el lenguaje sea exactamente igual pero debería ser parecido. Tener los mismos constructos.
-   * Usar CoffeeScript para escribir el código 
-   * Usar Jade para las vistas
-   * Usar Sass para las hojas de estilo
-   * Desplegar la aplicación en Heroku
-   * Añadir pruebas
+El objetivo de la práctica es desarollar un ADPR utilizando:
 
-## Distribución del trabajo 
-  * David: 
-      * sass
-      * tests
-      * package.json
-      * Procfile
-      * gitignore
-  * Victor 
-      * Scripts
-      * Server
-      * Vistas
-      * Deployment Heroku
+    Html.
+    Jade.
+    Mocha.
+    Chai.
+    Blanket.
+    JavaScript.
+    SASS.
+    MathJax.
+    CoffeeScript.
+    
 
-## Componestes del grupo
-   * [David Rodríguez González de Chaves](http://alu0100837353.github.io/)
-   * [Víctor Hernández Pérez](http://alu0100697032.github.io/)
+Developers:
+============
 
-## Despliegue 
- [Heroku](https://adpr-david-victor.herokuapp.com/)
+* Víctor Hernández Pérez: alu0100697032@ull.edu.es   [UserPage](http://alu0100697032.github.io/)
+* David Rodríguez González de chaves: alu0100837353@ull.edu.es   [UserPage](http://alu0100837353.github.io/)
+
+
+Enlaces:
+========
+
+
+* [Heroku](https://lexical-analyzer.herokuapp.com/)
+* [Repositorio GitHub](https://github.com/alu0100697032/adpr_express_generator)
+
+Recursos utilizados:
+=======
+
+* [Chai](http://chaijs.com/)
+* [Mocha](http://mochajs.org/)
+* [Blanket](http://blanketjs.org/)
+* [Heroku](https://www.heroku.com/)
+* [MathJax](https://www.mathjax.org/)
+* [CoffeeScript](http://coffeescript.org/)
+* [Jade](http://jade-lang.com/)
+* [SASS](http://sass-lang.com/)
+
