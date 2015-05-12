@@ -29,17 +29,17 @@ fecha
             var diasemana;
             if($1 == 0)
             diasemana = "domingo";
-            else if($2 == 1)
+            else if($1 == 1)
             diasemana = "lunes"; 
-            else if($2 == 2)
+            else if($1 == 2)
             diasemana = "martes";
-            else if($2 == 3)
+            else if($1 == 3)
             diasemana = "miercoles";
-            else if($2 == 4)
+            else if($1 == 4)
             diasemana = "jueves";
-            else if($2 == 5)
+            else if($1 == 5)
             diasemana = "viernes";
-            else if($2 == 6)
+            else if($1 == 6)
             diasemana = "sabado";
             return diasemana;
         }

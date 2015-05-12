@@ -85,23 +85,23 @@ var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
 
-var diasemana;
-if($$[$0-1] == 0)
-diasemana = "domingo";
-else if($$[$0] == 1)
-diasemana = "lunes"; 
-else if($$[$0] == 2)
-diasemana = "martes";
-else if($$[$0] == 3)
-diasemana = "miercoles";
-else if($$[$0] == 4)
-diasemana = "jueves";
-else if($$[$0] == 5)
-diasemana = "viernes";
-else if($$[$0] == 6)
-diasemana = "sabado";
-return diasemana;
-
+            var diasemana;
+            if($$[$0-1] == 0)
+            diasemana = "domingo";
+            else if($$[$0-1] == 1)
+            diasemana = "lunes"; 
+            else if($$[$0-1] == 2)
+            diasemana = "martes";
+            else if($$[$0-1] == 3)
+            diasemana = "miercoles";
+            else if($$[$0-1] == 4)
+            diasemana = "jueves";
+            else if($$[$0-1] == 5)
+            diasemana = "viernes";
+            else if($$[$0-1] == 6)
+            diasemana = "sabado";
+            return diasemana;
+        
 break;
 case 2:
 

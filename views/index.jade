@@ -4,7 +4,13 @@ block navpiece
     li 
         a(href='http://alu0100697032.github.io/pegjs/', target='_blank') Test
 block content
+  #description
+    |Introduzca una fecha, por ejemplo: 6 de enero de 2000
+    |<br>El año ha de estar entre 2000 y 2800
+    |<br>Click en el botón Parse
+    |<br>El programa devolverá el dia de la semana que corresponde a la fecha dada.
+    br
   #analyzer
       textarea#original
-      input#PARSE(value="parse" type="button")
+      input#PARSE(value="Parse" type="button")
       pre#OUTPUT
