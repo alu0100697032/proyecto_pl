@@ -84,16 +84,91 @@ performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* actio
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
-return $$[$0-1]; 
+
+var diasemana;
+if($$[$0-1] == 0)
+diasemana = "domingo";
+else if($$[$0] == 1)
+diasemana = "lunes"; 
+else if($$[$0] == 2)
+diasemana = "martes";
+else if($$[$0] == 3)
+diasemana = "miercoles";
+else if($$[$0] == 4)
+diasemana = "jueves";
+else if($$[$0] == 5)
+diasemana = "viernes";
+else if($$[$0] == 6)
+diasemana = "sabado";
+return diasemana;
+
 break;
-case 2: case 4:
-this.$ = $$[$0-2]+" de "+$$[$0];
+case 2:
+
+            if(($$[$0-2]+$$[$0]) >= 7)
+            this.$ = ($$[$0-2]+$$[$0])%7;
+        
 break;
-case 3: case 6:
+case 3:
 this.$ = Number(yytext);
 break;
+case 4:
+
+            this.$ = $$[$0-2]+$$[$0];
+       
+break;
 case 5:
-this.$ = yytext;
+
+            if(yytext == 'enero')
+            this.$ = 0;
+            else if(yytext == 'febrero')
+            this.$ = 3;
+            else if(yytext == 'marzo')
+            this.$ = 3;
+            else if(yytext == 'abril')
+            this.$ = -1;
+            else if(yytext == 'mayo')
+            this.$ = 1;
+            else if(yytext == 'junio')
+            this.$ = 4;
+            else if(yytext == 'julio')
+            this.$ = 6;
+            else if(yytext == 'agosto')
+            this.$ = 2;
+            else if(yytext == 'septiembre')
+            this.$ = 5;
+            else if(yytext == 'octubre')
+            this.$ = 0;
+            else if(yytext == 'noviembre')
+            this.$ = 3;
+            else if(yytext == 'diciembre')
+            this.$ = 5;
+        
+break;
+case 6:
+
+            //paso 1
+            var calculo1 = yytext%400 
+            //paso 2
+            var desplazamiento = 0;
+            if(calculo1 > 100){
+              desplazamiento = Math.floor(calculo/100);
+              desplazamiento = desplazamiento * 5;
+            }
+            //paso 3
+            var calculo2 = Number(yytext.substring(2,4));
+            var calculo3 = 0;
+            if(calculo2 == 00)
+             calculo3 = 99;
+            else
+            calculo3 = calculo2-1;
+            
+            var calculo4 = Number(Math.floor(calculo3/4));
+            desplazamiento = desplazamiento + calculo4+calculo3;
+            if(desplazamiento >= 7)
+            desplazamiento = desplazamiento % 7;
+            this.$ = desplazamiento;
+        
 break;
 }
 },
