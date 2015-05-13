@@ -11,20 +11,39 @@ html
       |  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}}); 
     script(type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
   body
-    barra
-        #navbar 
-        ul
-            li 
-                a(href='https://github.com/alu0100697032/proyecto_pl', target='_blank') Github
-            block navpiece
-            li 
-                a(href='/gram') Grammar
-            li 
-                a(href='http://jade-lang.com/', target='_blank') Jade
-            li 
-                a(href='https://www.mathjax.org/', target='_blank') MathJax
-            li 
-                a(href='http://zaach.github.io/jison/', target='_blank') Jison
-    
-    resto
-        block content
+    .container
+        barra
+            nav.navbar.navbar-default 
+                .container-fluid
+                    .navbar-header
+                        a.navbar-brand(href='/') PL Proyect: Dates
+                    .navbar-collapse.collapse
+                        ul.nav.navbar-nav
+                            li.active
+                                a(href='/gram') Grammar
+                            li 
+                                a(href='#', target='_blank') Tests
+                            li.dropdown
+                                a.dropdown-toggle(aria-expanded='false' role='button' data-toggle='dropdown' href='#') Tools
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='http://jade-lang.com/', target='_blank') Jade
+                                    li 
+                                        a(href='https://www.mathjax.org/', target='_blank') MathJax
+                                    li 
+                                        a(href='http://zaach.github.io/jison/', target='_blank') Jison
+                        ul.nav.navbar-nav.navbar-right
+                            li 
+                                a(href='https://github.com/alu0100697032/proyecto_pl', target='_blank') Github
+                            li.dropdown
+                                a.dropdown-toggle(aria-expanded='false' role='button' data-toggle='dropdown' href='#') Collaborators
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='http://alu0100697032.github.io/', target='_blank') Víctor Hernández 
+                                    li 
+                                        a(href='http://alu0100837353.github.io/', target='_blank') David Rodríguez
+
+        resto
+            block content
