@@ -1,21 +1,9 @@
-#Práctica: Analizador Descendiente Predictivo Recursivo
+#Práctica: Desarrollo de Lenguaje de Dominio Específico
 
 Contexto:
 =========
 
-El objetivo de la práctica es desarollar un ADPR utilizando:
-
-    Html.
-    Jade.
-    Mocha.
-    Chai.
-    Blanket.
-    JavaScript.
-    SASS.
-    MathJax.
-    CoffeeScript.
-    Heroku.
-    
+En nuestro caso desarrollamos un parser para las fechas.
 
 Developers:
 ============
@@ -28,18 +16,8 @@ Enlaces:
 ========
 
 
-* [Heroku](https://adpr-david-victor.herokuapp.com/)
+* [Heroku](https://proyecto-david-victor.herokuapp.com/)
+* [Repositorio GitHub](https://github.com/alu0100697032/proyecto_pl)
 * [Test]()
 
-Recursos utilizados:
-=======
-
-* [Chai](http://chaijs.com/)
-* [Mocha](http://mochajs.org/)
-* [Blanket](http://blanketjs.org/)
-* [Heroku](https://www.heroku.com/)
-* [MathJax](https://www.mathjax.org/)
-* [CoffeeScript](http://coffeescript.org/)
-* [Jade](http://jade-lang.com/)
-* [SASS](http://sass-lang.com/)
 
