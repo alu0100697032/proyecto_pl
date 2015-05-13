@@ -88,19 +88,20 @@ case 1:
             var diasemana;
             var tipoanyo;
             if($$[$0-1][0] == 0)
-            diasemana = "Día de la semana: domingo";
+                diasemana = "Día de la semana: domingo";
             else if($$[$0-1][0] == 1)
-            diasemana = "Día de la semana: lunes"; 
+                diasemana = "Día de la semana: lunes"; 
             else if($$[$0-1][0] == 2)
-            diasemana = "Día de la semana: martes";
+                diasemana = "Día de la semana: martes";
             else if($$[$0-1][0] == 3)
-            diasemana = "Día de la semana: miercoles";
+                diasemana = "Día de la semana: miercoles";
             else if($$[$0-1][0] == 4)
-            diasemana = "Día de la semana: jueves";
+                diasemana = "Día de la semana: jueves";
             else if($$[$0-1][0] == 5)
-            diasemana = "Día de la semana: viernes";
+                diasemana = "Día de la semana: viernes";
             else if($$[$0-1][0] == 6)
-            diasemana = "Día de la semana: sabado";
+                diasemana = "Día de la semana: sabado";
+                
             if($$[$0-1][1] == true)
                 tipoanyo = "Tipo de año: bisiesto. ";
             else
@@ -112,6 +113,8 @@ case 2:
 
             if(($$[$0-2]+$$[$0][0]) >= 7)
                 this.$ = [($$[$0-2]+$$[$0][0])%7, $$[$0][1]];
+            else
+                this.$ = [$$[$0-2]+$$[$0][0], $$[$0][1]];
         
 break;
 case 3:
@@ -121,6 +124,8 @@ case 4:
 
             if($$[$0-2][1] == true && $$[$0][1] == true)
                 this.$ = [$$[$0-2][0]+$$[$0][0]+1, true];
+            else if($$[$0][1] == true)
+                this.$ = [$$[$0-2][0]+$$[$0][0], true];
             else
                 this.$ = [$$[$0-2][0]+$$[$0][0], false];
        
@@ -140,7 +145,7 @@ case 5:
             else if(yytext == 'junio')
                 this.$ = [4, true];
             else if(yytext == 'julio')
-                this.$ = [6, true];
+                this.$ = [-1, true];
             else if(yytext == 'agosto')
                 this.$ = [2, true];
             else if(yytext == 'septiembre')
@@ -163,16 +168,16 @@ case 6:
             //paso 2
             var desplazamiento = 0;
             if(calculo1 > 100){
-              desplazamiento = Math.floor(calculo/100);
+              desplazamiento = Math.floor(calculo1/100);
               desplazamiento = desplazamiento * 5;
             }
             //paso 3
             var calculo2 = Number(yytext.substring(2,4));
             var calculo3 = 0;
             if(calculo2 == 00)
-             calculo3 = 99;
+                calculo3 = 99;
             else
-            calculo3 = calculo2-1;
+                calculo3 = calculo2-1;
             
             var calculo4 = Number(Math.floor(calculo3/4));
             desplazamiento = desplazamiento + calculo4+calculo3;
@@ -677,7 +682,7 @@ case 8:return 'INVALID'
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:[2][0-7][0-9][0-9]|2800\b)/,/^(?:1[0-9]|2[0-9]|3[0-1]|[1-9]\b)/,/^(?:enero|febrero|marzo|abril|mayo|junio\b)/,/^(?:julio|agosto|septiembre|octubre\b)/,/^(?:noviembre|diciembre\b)/,/^(?:de\b)/,/^(?:$)/,/^(?:.)/],
+rules: [/^(?:\s+)/,/^(?:19[0-9]{2}|2[0-9]{3}\b)/,/^(?:1[0-9]|2[0-9]|3[0-1]|[1-9]\b)/,/^(?:enero|febrero|marzo|abril|mayo|junio\b)/,/^(?:julio|agosto|septiembre|octubre\b)/,/^(?:noviembre|diciembre\b)/,/^(?:de\b)/,/^(?:$)/,/^(?:.)/],
 conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8],"inclusive":true}}
 });
 return lexer;

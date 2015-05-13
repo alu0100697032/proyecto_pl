@@ -6,7 +6,7 @@
 %%
 
 \s+                                                     /*skip whites*/
-[2][0-7][0-9][0-9]|2800\b                               return 'YYYY'
+19[0-9]{2}|2[0-9]{3}\b                               return 'YYYY'
 1[0-9]|2[0-9]|3[0-1]|[1-9]\b                            return 'DD'
 "enero"|"febrero"|"marzo"|"abril"|"mayo"|"junio"\b        return 'MM'
 "julio"|"agosto"|"septiembre"|"octubre"                 return 'MM'
@@ -29,19 +29,20 @@ fecha
             var diasemana;
             var tipoanyo;
             if($1[0] == 0)
-            diasemana = "Día de la semana: domingo";
+                diasemana = "Día de la semana: domingo";
             else if($1[0] == 1)
-            diasemana = "Día de la semana: lunes"; 
+                diasemana = "Día de la semana: lunes"; 
             else if($1[0] == 2)
-            diasemana = "Día de la semana: martes";
+                diasemana = "Día de la semana: martes";
             else if($1[0] == 3)
-            diasemana = "Día de la semana: miercoles";
+                diasemana = "Día de la semana: miercoles";
             else if($1[0] == 4)
-            diasemana = "Día de la semana: jueves";
+                diasemana = "Día de la semana: jueves";
             else if($1[0] == 5)
-            diasemana = "Día de la semana: viernes";
+                diasemana = "Día de la semana: viernes";
             else if($1[0] == 6)
-            diasemana = "Día de la semana: sabado";
+                diasemana = "Día de la semana: sabado";
+                
             if($1[1] == true)
                 tipoanyo = "Tipo de año: bisiesto. ";
             else
@@ -55,6 +56,8 @@ f
        {
             if(($1+$3[0]) >= 7)
                 $$ = [($1+$3[0])%7, $3[1]];
+            else
+                $$ = [$1+$3[0], $3[1]];
         }
    ;
 dia 
@@ -66,6 +69,8 @@ mesanyo
        {
             if($1[1] == true && $3[1] == true)
                 $$ = [$1[0]+$3[0]+1, true];
+            else if($3[1] == true)
+                $$ = [$1[0]+$3[0], true];
             else
                 $$ = [$1[0]+$3[0], false];
        }
@@ -86,7 +91,7 @@ mes
             else if(yytext == 'junio')
                 $$ = [4, true];
             else if(yytext == 'julio')
-                $$ = [6, true];
+                $$ = [-1, true];
             else if(yytext == 'agosto')
                 $$ = [2, true];
             else if(yytext == 'septiembre')
@@ -110,16 +115,16 @@ anyo
             //paso 2
             var desplazamiento = 0;
             if(calculo1 > 100){
-              desplazamiento = Math.floor(calculo/100);
+              desplazamiento = Math.floor(calculo1/100);
               desplazamiento = desplazamiento * 5;
             }
             //paso 3
             var calculo2 = Number(yytext.substring(2,4));
             var calculo3 = 0;
             if(calculo2 == 00)
-             calculo3 = 99;
+                calculo3 = 99;
             else
-            calculo3 = calculo2-1;
+                calculo3 = calculo2-1;
             
             var calculo4 = Number(Math.floor(calculo3/4));
             desplazamiento = desplazamiento + calculo4+calculo3;
