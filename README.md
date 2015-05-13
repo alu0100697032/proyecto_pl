@@ -3,7 +3,7 @@
 Contexto:
 =========
 
-En nuestro caso desarrollamos un parser para las fechas.
+En nuestro caso desarrollamos un parser para las fechas, de forma que introduces una fecha válida y te devuelve el día de la semana que es o será y si es o no año bisiesto.
 
 Developers:
 ============
