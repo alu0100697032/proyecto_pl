@@ -36,27 +36,28 @@ block content
   
   ol
     li
-      |  $\Sigma = \{ ; =, ID, P, IF, THEN, <, >, <=, >=, ==, !=,  +, *, (, ), NUM \}$, 
+      |  $\Sigma = \{ de, [1-31], enero, febrero, marzo, abril, mayo. junio, julio, agosto, 
+      | septiembre, octubre, noviembre, diciembre, [1900-2999] \}$, 
     li
-      |  $V = \{ statements, statement, condition, expression, term, factor \}$ 
+      |  $V = \{ fecha, f, dia, mesanyo, mes, anyo \}$ 
     li
       |  Productions: 
       ol
         li
-          |  statements $ \rightarrow$ statement ';' statements $\vert$ statement 
+          |  $fecha$ $ \rightarrow$ $f$
         li
-          |  statement $ \rightarrow$ ID '=' expression $\vert$ P expression 
-          |  $ \vert$ IF condition THEN statement 
+          |  $f$ $ \rightarrow$ $dia$ 'de' $mesanyo$ 
         li
-          | condition $ \rightarrow$ expression ('=='|'!='|'<'|'<='|'>'|'>=') expression 
+          |  $dia$ $ \rightarrow$ [1-31]
         li
-          |  expression $ \rightarrow$ term '+' expression $\vert$ term '-' expression $\vert$ term 
+          |  $mesanyo$ $ \rightarrow$ $mes$ 'de' $anyo$
         li
-          |  term $ \rightarrow$ factor '*' term $\vert$ factor '/' term $\vert$ factor 
+          |  $mes$ $ \rightarrow$ ('enero', 'febrero', 'marzo', 'abril', 'mayo', 
+          | 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre')
         li
-          |  factor $ \rightarrow$ '(' expression ')' $\vert$ ID $ \vert$ NUM 
+          |  $anyo$ $ \rightarrow$ [1900-2999]
     li
-      |  Start symbol: $statements$ 
+      |  Start symbol: $fecha$ 
   br
   br
   br
