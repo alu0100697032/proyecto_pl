@@ -1,9 +1,9 @@
-#Práctica: Desarrollo de Lenguaje de Dominio Específico
+#Práctica: Desarrollo de Lenguaje de Dominio Específico (Dates)
 
 Contexto:
 =========
 
-En nuestro caso desarrollamos un parser para las fechas, de forma que introduces una fecha válida y te devuelve el día de la semana que es o será y si es o no año bisiesto.
+En nuestro caso desarrollamos un parser para las fechas, de forma que introduces una fecha válida (10 de mayo de 2015) y te devuelve el día de la semana que es o será y si es o no año bisiesto.
 
 Developers:
 ============
@@ -21,3 +21,16 @@ Enlaces:
 * [Test](http://alu0100697032.github.io/proyecto_pl/)
 
 
+Herramientas:
+=============
+
+
+* [Chai](http://chaijs.com/)
+* [Mocha](http://mochajs.org/)
+* [Blanket](http://blanketjs.org/)
+* [Heroku](https://www.heroku.com/)
+* [MathJax](https://www.mathjax.org/)
+* [Jade](http://jade-lang.com/)
+* [jQuery](http://jquery.com/)
+* [jQuery-Tutorial](http://www.w3schools.com/jquery/default.asp)
+* [BootStrap](http://getbootstrap.com/)
