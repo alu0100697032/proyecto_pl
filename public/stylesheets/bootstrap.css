@@ -6564,3 +6564,8 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+#original{
+  resize: none;
+  height: 30px;
+}

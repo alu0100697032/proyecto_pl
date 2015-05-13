@@ -1,13 +1,16 @@
 extends layout
 
 block content
-  #description
-    |Introduzca una fecha, por ejemplo: 6 de enero de 2000
-    |<br>El año ha de estar entre 1900 y 2999
-    |<br>Click en el botón Parse
-    |<br>El programa devolverá el dia de la semana que corresponde a la fecha dada e indicará si el año es bisiesto.
+  #description.jumbotron
+    h1 Calculadora de fechas
+    p 1. Introduzca una fecha con formato: 6 de enero de 2000
+    p 2. El año ha de estar entre 1900 y 2999 y el mes en minúsculas
+    p 3. Click en Parse
+    p 4. Se indicará si el año es bisiesto o no y el día de la semana que corresponde a la fecha dada
     br
   #analyzer
-      textarea#original
-      input#PARSE(value="Parse" type="button")
+      textarea#original 26 de mayo de 2013
+      p
+      p 
+        input#PARSE.btn.btn-lg.btn-primary(value="Parse" type="button" )
       pre#OUTPUT
