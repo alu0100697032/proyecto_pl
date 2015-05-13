@@ -1,6 +1,6 @@
 var assert = chai.assert;
 
-suite('ADPR', function() {
+suite('PL Proyect: Dates', function() {
 
     setup(function() {
         if (typeof __html__ !== 'undefined') {
